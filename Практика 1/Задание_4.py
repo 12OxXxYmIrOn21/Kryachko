@@ -1,0 +1,6 @@
+sec = int(input())
+days = sec // (60*60*24)
+hours = ((sec - days) // (60*60))
+minuts = (((sec - days) - hours)//60)
+sek = (((sec - days) - hours) - minuts)
+print(days, ":", hours, ":", minuts, ":", sek)
