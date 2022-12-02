@@ -1,6 +1,7 @@
-def F(x):
+def F():
+    x = int(input())
     k = 0
     while x != 0:
         k += 1
     print(k)
-F(5633520)
+F()
