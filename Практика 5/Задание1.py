@@ -1,4 +1,4 @@
-def F(N)
+def F(N):
     i = 1
     while i <= N:
         print(i*i)
