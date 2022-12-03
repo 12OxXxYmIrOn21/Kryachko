@@ -1,4 +1,4 @@
-import json
+import json    #Номер зачётной книжки заканчивается на 1#
 def F():
     v = name.get()
     f_json= """
