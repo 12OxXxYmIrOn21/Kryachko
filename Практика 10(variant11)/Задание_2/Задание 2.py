@@ -1,3 +1,21 @@
+from random import randint
+file = open(r'C:\Users\User\Desktop\vvod2_kryachko_y-224.txt', 'w+', encoding='UTF-8')
+
+a = [randint(1, 9) for i in range(10)]
+
+
+file.write(str(a[1]))
+file.write(str(a[2]))
+file.write(str(a[3]))
+file.write(str(a[4]))
+file.write(str(a[5]))
+file.write(str(a[6]))
+file.write(str(a[7]))
+file.write(str(a[8]))
+file.write(str(a[9]))
+
+file.close()
+
 file = open(r'C:\Users\User\Desktop\vvod2_kryachko_y-224.txt', 'r')
 filee = open(r'C:\Users\User\Desktop\vivod2_kryachko_y-224.txt', 'w+', encoding='UTF-8')
 
