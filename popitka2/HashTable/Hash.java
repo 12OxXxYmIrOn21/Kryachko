@@ -2,8 +2,8 @@ package HashTable;
 
 import java.util.*;
 
-public class Hash {
-    private int TABLE_SIZE;
+public class Hash { 
+    private int TABLE_SIZE; 
     private int size;
     private String[] keys;
     private String[] values;
@@ -41,9 +41,9 @@ public class Hash {
 
     public void put(String key, String value) { //Кладем в ключ свое значение
         int hash = hash(key);
-        while (!keys[hash].equals("")) {
-            if (keys[hash].equals(key)) {
-                values[hash] = value;
+        while (!keys[hash].equals("")) { //пока ключ не пустой
+            if (keys[hash].equals(key)) { //если ключ свопадает с ключом по хэшу
+                values[hash] = value; //хэш значения равен значению
                 return;
             }
             hash = (hash + 1) % TABLE_SIZE;
