@@ -1,0 +1,195 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Company {
+    private Map<String, Department> departments;
+
+    public Company() {
+        departments = new HashMap<>();
+    }
+
+    public void addDepartment(String name) {
+        Department department = new Department(name);
+        departments.put(name, department);
+    }
+
+    public void removeDepartment(String name) {
+        Department department = departments.get(name);
+        if (department != null) {
+            departments.remove(name);
+        }
+    }
+
+    public void addEmployee(String departmentName, String name, int age, int salary) {
+        Department department = departments.get(departmentName);
+        if (department != null) {
+            Employee employee = new Employee(name, age, salary);
+            department.addEmployee(employee);
+        }
+    }
+
+    public void removeEmployee(String departmentName, String name) {
+        Department department = departments.get(departmentName);
+        if (department != null) {
+            department.removeEmployee(name);
+        }
+    }
+
+    public void editDepartment(String oldName, String newName) {
+        Department department = departments.get(oldName);
+        if (department != null) {
+            department.setName(newName);
+            departments.put(newName, department);
+            departments.remove(oldName);
+        }
+    }
+
+    public void editEmployee(String departmentName, String oldName, String newName, int newAge, int newSalary) {
+        Department department = departments.get(departmentName);
+        if (department != null) {
+            department.editEmployee(oldName, newName, newAge, newSalary);
+        }
+    }
+
+    public void showAllEmployeesInDepartment(String departmentName) {
+        Department department = departments.get(departmentName);
+        if (department != null) {
+            List<Employee> employees = department.getEmployees();
+            for (Employee employee : employees) {
+                System.out.println(employee.getName());
+            }
+        }
+    }
+
+    public void showAllDepartments() {
+        for (String departmentName : departments.keySet()) {
+            System.out.println(departmentName);
+        }
+    }
+
+    public int getTotalSalaryInDepartment(String departmentName) {
+        Department department = departments.get(departmentName);
+        int totalSalary = 0;
+        if (department != null) {
+            List<Employee> employees = department.getEmployees();
+            for (Employee employee : employees) {
+                totalSalary += employee.getSalary();
+            }
+        }
+        return totalSalary;
+    }
+
+    public static void main(String[] args) {
+        Company company = new Company();
+
+        // Добавление отделов
+        company.addDepartment("Отдел разработки");
+        company.addDepartment("Отдел продаж");
+
+        // Добавление сотрудников
+        company.addEmployee("Отдел разработки", "Иван Иванов", 30, 5000);
+        company.addEmployee("Отдел разработки", "Петр Петров", 32, 6000);
+        company.addEmployee("Отдел продаж", "Алексей Сидоров", 28, 4000);
+
+        // Удаление сотрудников
+        company.removeEmployee("Отдел разработки", "Иван Иванов");
+
+        // Редактирование сотрудника
+        company.editEmployee("Отдел разработки", "Петр Петров", "Петр Сидоров", 33, 7000);
+
+        // Вывод всех сотрудников в отделе
+        company.showAllEmployeesInDepartment("Отдел разработки");
+
+        // Вывод всех отделов
+        company.showAllDepartments();
+
+        // Получение суммы ЗП в отделе
+        int totalSalary = company.getTotalSalaryInDepartment("Отдел продаж");
+        System.out.println("Сумма ЗП в отделе продаж: " + totalSalary);
+    }
+}
+
+class Department {
+    private String name;
+    private List<Employee> employees;
+
+    public Department(String name) {
+        this.name = name;
+        employees = new
+                ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
+    }
+
+    public void removeEmployee(String name) {
+        for (Employee employee : employees) {
+            if (employee.getName().equals(name)) {
+                employees.remove(employee);
+                break;
+            }
+        }
+    }
+
+    public void editEmployee(String oldName, String newName, int newAge, int newSalary) {
+        for (Employee employee : employees) {
+            if (employee.getName().equals(oldName)) {
+                employee.setName(newName);
+                employee.setAge(newAge);
+                employee.setSalary(newSalary);
+                break;
+            }
+        }
+    }
+}
+
+class Employee {
+    private String name;
+    private int age;
+    private int salary;
+
+    public Employee(String name, int age, int salary) {
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+}
