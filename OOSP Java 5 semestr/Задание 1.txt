@@ -1,0 +1,66 @@
+public interface Instrument {
+    void play();
+}
+public class Guitar implements Instrument {
+    @Override
+    public void play() {
+        System.out.println("РРіСЂР°РµС‚ РЅР° РіРёС‚Р°СЂРµ.");
+    }
+}
+
+public class Piano implements Instrument {
+    @Override
+    public void play() {
+        System.out.println("РРіСЂР°РµС‚ РЅР° С„РѕСЂС‚РµРїРёР°РЅРѕ.");
+    }
+}
+
+public class Violin implements Instrument {
+    @Override
+    public void play() {
+        System.out.println("РРіСЂР°РµС‚ РЅР° СЃРєСЂРёРїРєРµ.");
+    }
+}
+public abstract class InstrumentFactory {
+    public abstract Instrument createInstrument();
+}
+
+public class GuitarFactory extends InstrumentFactory {
+    @Override
+    public Instrument createInstrument() {
+        return new Guitar();
+    }
+}
+
+public class PianoFactory extends InstrumentFactory {
+    @Override
+    public Instrument createInstrument() {
+        return new Piano();
+    }
+}
+
+public class ViolinFactory extends InstrumentFactory {
+    @Override
+    public Instrument createInstrument() {
+        return new Violin();
+    }
+}
+________________________
+public class Main {
+    public static void main(String[] args) {
+        // РЎРѕР·РґР°РµРј С„Р°Р±СЂРёРєРё РґР»СЏ СЂР°Р·РЅС‹С… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ
+        InstrumentFactory guitarFactory = new GuitarFactory();
+        InstrumentFactory pianoFactory = new PianoFactory();
+        InstrumentFactory violinFactory = new ViolinFactory();
+
+        // РЎРѕР·РґР°РµРј РёРЅСЃС‚СЂСѓРјРµРЅС‚С‹ С‡РµСЂРµР· С„Р°Р±СЂРёРєРё
+        Instrument guitar = guitarFactory.createInstrument();
+        Instrument piano = pianoFactory.createInstrument();
+        Instrument violin = violinFactory.createInstrument();
+
+        // РРіСЂР°РµРј РЅР° РєР°Р¶РґРѕРј РёРЅСЃС‚СЂСѓРјРµРЅС‚Рµ
+        guitar.play();
+        piano.play();
+        violin.play();
+    }
+}
